@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne } from "typeorm";
+import { GrupoMidia } from "./grupo-midia.entity";
 
 @Entity()
 export class Midia extends BaseEntity{
@@ -27,6 +28,9 @@ export class Midia extends BaseEntity{
     @Column("int", {nullable: true})
     ultimoVisto:number;
 
+    @ManyToOne(type => GrupoMidia, grupoMidia => grupoMidia.midias)
+    grupoMidia: GrupoMidia;
+    
     toJson():string{
         return `{
             "id": ${this.id},

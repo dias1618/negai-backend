@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from "typeorm";
+import { Midia } from "./midia.entity";
 
 @Entity()
 export class GrupoMidia extends BaseEntity{
@@ -14,6 +15,9 @@ export class GrupoMidia extends BaseEntity{
 
     @Column("varchar", {nullable: true})
     titulo:string;
+
+    @OneToMany(type => Midia, midia => midia.grupoMidia)
+    midias: Midia[];
 
     toJson():string{
         return `{

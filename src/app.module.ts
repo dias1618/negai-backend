@@ -6,18 +6,26 @@ import { AuthController } from './controllers/auth.controller';
 import { UsuarioService } from './services/usuario.service';
 import { GrupoMidiaController } from './controllers/grupo-midia.controller';
 import { GrupoMidiaService } from './services/grupo-midia.service';
+import { MidiaController } from './controllers/midia.controller';
+import { MidiaService } from './services/midia.service';
 
 @Module({
-  imports: [TypeOrmModule.forRoot()],
+  imports: [
+    TypeOrmModule.forRoot({
+      keepConnectionAlive: true,
+    })
+  ],
   controllers: [
     AppController,
     AuthController,
-    GrupoMidiaController
+    GrupoMidiaController,
+    MidiaController
   ],
   providers: [
     AppService,
     UsuarioService,
     GrupoMidiaService,
+    MidiaService
   ],
 })
 export class AppModule {}
