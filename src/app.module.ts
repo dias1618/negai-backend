@@ -18,7 +18,7 @@ import { GrupoMidia } from './entities/grupo-midia.entity';
       keepConnectionAlive: true,
       autoLoadEntities: true,
       type: 'postgres',
-      host: 'docker_postgres_1',
+      host: 'localhost',
       port: 5432,
       username: "postgres",
       password: "axlrby216",

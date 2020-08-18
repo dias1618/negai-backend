@@ -4,7 +4,7 @@ import { GrupoMidia } from "./grupo-midia.entity";
 @Entity()
 export class Midia extends BaseEntity{
 
-    constructor(data: {id?:number, titulo?:string, icone?:any, situacaoMidia?:number, situacaoAcompanhamento?:number, ultimoVisto?:number}){
+    constructor(data: {id?:number, titulo?:string, icone?:any, situacaoMidia?:number, situacaoAcompanhamento?:number, ultimoVisto?:number, grupoMidia?:GrupoMidia}){
         super();
         this.id = data && data.id || 0;
         this.titulo = data && data.titulo || "";
@@ -12,6 +12,7 @@ export class Midia extends BaseEntity{
         this.situacaoMidia = data && data.situacaoMidia || 0;
         this.situacaoAcompanhamento = data && data.situacaoAcompanhamento || 0;
         this.ultimoVisto = data && data.ultimoVisto || 0;
+        this.grupoMidia = data && data.grupoMidia || null;
     }
 
     @PrimaryGeneratedColumn()
@@ -41,7 +42,8 @@ export class Midia extends BaseEntity{
             "titulo": "${this.titulo}",
             "situacaoMidia": "${this.situacaoMidia}",
             "situacaoAcompanhamento": "${this.situacaoAcompanhamento}",
-            "ultimoVisto": "${this.ultimoVisto}"
+            "ultimoVisto": "${this.ultimoVisto}",
+            "grupoMidia": "${this.grupoMidia.toJson}"
         }`
     }
 }
