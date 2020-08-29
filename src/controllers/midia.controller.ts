@@ -1,4 +1,4 @@
-import { Post, HttpCode, Body, Controller, Get, Query } from "@nestjs/common";
+import { Post, HttpCode, Body, Controller, Get, Query, Param, Delete } from "@nestjs/common";
 import { Midia } from "src/entities/midia.entity";
 import { MidiaService } from "src/services/midia.service";
 import { MidiaNaoCadastradaException } from "src/exceptions/midia-nao-cadastrada.exception";
@@ -19,6 +19,14 @@ export class MidiaController{
         throw new MidiaNaoCadastradaException();
 
     return midia;
+  }
+
+  @Delete(':id')
+  @HttpCode(200)
+  async remover(@Param('id') id:number) {
+    await this.midiaService.delete(id);
+
+    return 'Midia deletada';
   }
 
   @Get()

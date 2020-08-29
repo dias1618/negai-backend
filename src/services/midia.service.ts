@@ -7,6 +7,10 @@ export class MidiaService{
         return await midia.save();
     }
 
+    async delete(id:number):Promise<void>{
+        await getRepository(Midia).delete(id);
+    }
+
     async getAllByGrupoMidia(idGrupoMidia:number):Promise<Midia[]>{
         return await getRepository(Midia).createQueryBuilder('midia')
         .leftJoinAndSelect('midia.grupoMidia', 'grupoMidia')
