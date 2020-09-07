@@ -1,4 +1,4 @@
-import { Post, HttpCode, Body, Controller, Get, Query, Param, Delete } from "@nestjs/common";
+import { Post, HttpCode, Body, Controller, Get, Query, Param, Delete, Patch } from "@nestjs/common";
 import { Midia } from "src/entities/midia.entity";
 import { MidiaService } from "src/services/midia.service";
 import { MidiaNaoCadastradaException } from "src/exceptions/midia-nao-cadastrada.exception";
@@ -32,6 +32,11 @@ export class MidiaController{
   @Get()
   async get(@Query('idGrupoMidia') idGrupoMidia:number){
     return await this.midiaService.getAllByGrupoMidia(idGrupoMidia);
+  }
+
+  @Patch(':id')
+  async update(@Param('id') id:number, @Body() partMidia:any){
+    this.midiaService.update(id, partMidia);
   }
 
 }
