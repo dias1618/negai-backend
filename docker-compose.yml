@@ -8,40 +8,9 @@ services:
     ports:
         - 3000:3000
     restart: on-failure
-    depends_on:
-        - postgres
-    networks:
-      - postgres-network
-        
-  postgres:
-    image: postgres
-    container_name: docker_postgres_1
-    environment:
-      POSTGRES_PASSWORD: "axlrby216"
-    ports:
-      - "15432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data 
     networks:
       - postgres-network
       
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: docker_pgadmin_1
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "dias.1618@gmail.com"
-      PGADMIN_DEFAULT_PASSWORD: "axlrby216"
-    ports:
-      - "16543:80"
-    depends_on:
-      - postgres
-    networks:
-      - postgres-network
-
-volumes:
-    pgdata:
-        driver: local
-
-networks: 
+networks:
   postgres-network:
     driver: bridge
