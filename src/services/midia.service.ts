@@ -14,10 +14,7 @@ export class MidiaService{
     async update(id:number, partMidia:any):Promise<Midia>{
 
         let midia = await this.get(id);
-        console.log(`midia = ${midia}`);
         for(let key in partMidia){
-            console.log('key = ', key)
-            console.log('partMidia[key] = ', partMidia[key])
             midia[key] = partMidia[key];
         }
 
